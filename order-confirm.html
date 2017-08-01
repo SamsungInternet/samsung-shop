@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<title>Shop Samsung (demo)</title>
+<link rel="stylesheet" href="src/css/styles.css">
+<script src="vendor/jquery-3.1.1.min.js"></script>
+<script>
+
+ $().ready(function() {
+    var email = sessionStorage.getItem("samsungPayShopDemoEmail"); 
+    if (email) {
+        $("#accountEmail").attr("value", email);
+        $("#accountPassword").focus();
+    }  
+ });
+</script>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">    
+</head>
+<body>
+    <nav class="product-filter">
+        <h1>Shop Samsung</h1>
+    </nav>
+    
+    <div id="order-confirmation">
+        <div class="product-info">
+            <h1>Thank you for your order!</h1>
+            <h5>You will receive an order confirmation email shortly.</h5>
+        </div>
+        
+        <div class="product-info">
+            <h6>Do you want to signup for SamsungShop to receive updates on your order?</h6><br>
+            <div class="login-section" visible="">
+              <label id="accountEmailLabel">Email</label><br>
+              <input type="email" id="accountEmail" name="email" placeholder="Email" required="" aria-labelledby="accountEmailLabel" autocomplete="username" value="" autofocus="">
+            </div>
+
+            <div class="row input-row">
+                <label id="accountPasswordLabel">Password</label><br>
+                <input type="password" id="accountPassword" name="password" placeholder="Password" required="" aria-labelledby="accountPasswordLabel" autocomplete="current-password">
+            </div>
+
+            <br><div class="product-buy-button">
+                <h5>SIGN UP</h5>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

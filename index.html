@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+    <title>Samsung Shop</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+    <script src="vendor/jquery-3.1.1.min.js"></script>
+    <script src="src/js/pg.js"></script>
+    <script src="src/js/webpay.js"></script>
+    <script src="src/js/script.js"></script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+</head>
+<body>
+    <p id="disclaimer">For demo purposes only.</p>
+    <div id = "webpage">
+        <nav class="product-filter">
+            <div>
+                
+            </div>
+            <div>
+                <h2 align="center">Samsung Shop</h2>
+            </div>
+            <div id = "shopping-cart">
+                <img id = "shopping-cart-image" src="src/img/logo.png">
+                <i id = "shopping-cart-count">0</i>
+            </div>
+        </nav>
+        
+        <section class="products">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/samsunggalaxys7.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Samsung Galaxy S7</h5>
+                    <h6>$699.99</h6>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/gears3frontier.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Gear S3 Frontier</h5>
+                    <h6>$299.99</h6>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/gears3classic.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Gear S3 Classic</h5>
+                    <h6>$299.99</h6>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/gear360camera.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Gear 360 Camera</h5>
+                    <h6>$299.99</h6>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/gearvr2.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Gear VR 2</h5>
+                    <h6>$99.99</h6>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/gearvr.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Gear VR</h5>
+                    <h6>$39.99</h6>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/wirelesscharger.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Wireless Charger</h5>
+                    <h6>$39.99</h6>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/gears2.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Gear S2</h5>
+                    <h6>$299.99</h6>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/s3wirelesscharger.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>S3 Wireless Charger</h5>
+                    <h6>$39.99</h6>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="src/img/bluetoothheadphones.jpg">
+                </div>
+                <div class="product-info">
+                    <h5>Bluetooth Headphone</h5>
+                    <h6>$249.99</h6>
+                </div>
+            </div>
+
+        </section>
+
+        <div id="single-product">
+            <div class="single-product-card">
+                <div class="product-page-hide">X</div>
+                <div class="product-image">
+                    <img src="">
+                </div>
+                <div class="product-info">
+                    <h2></h2>
+                    <h1></h1>
+                </div>
+            </div>
+            <div>
+                <div class="product-buy-button" id="addToCart">
+                    <h5>ADD TO CART</h5>
+                </div>
+                <div class="product-buy-button" id="buyNow">
+                    <h5>BUY NOW</h5>
+                </div>
+
+            </div>
+        </div>
+
+        <label>Donate</label>
+        <iframe src="https://wpay.herokuapp.com/" allowpaymentrequest></iframe>
+    </div>
+    <div class="voice-overlay flex">
+        <div id="text-field" class="text">
+            <span id="final-text" class="final"></span>
+            <span id="interim-text" class="interim"></span>
+        </div>
+        <div class="flex mic-wrapper" id="mic">
+            <div class="microphone"></div>
+            <div class="mic-body"></div>
+            <div class="mic-base"></div>
+        </div>
+    </div>
+</body>
+    <script src="src/js/doAction.js"></script>
+    <script src="src/js/index.js"></script>
+</html>
