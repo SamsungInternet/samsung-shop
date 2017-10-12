@@ -63,7 +63,7 @@ webpay.prototype.setup = function(itemSummary, total){
 	});
 
 	// total
-	let finalCost = parseFloat(total.replace('$', '')) + discount;
+	let finalCost = parseFloat(total.replace('$', '')) - discount;
 	details['total'] = {
   		label: 'Total',
   		amount: { currency: 'USD', value : finalCost},
