@@ -98,12 +98,14 @@ webpay.prototype.setup = function(itemSummary, total){
  	// detect shipping option changes
  	payment.addEventListener('shippingoptionchange', e => {
 	  e.updateWith(((details, shippingOption) => {
+	  	let originalCost = finalCost;
 	    let selectedShippingOption;
 	    let otherShippingOption;
 	    if (shippingOption === 'standard') {
 	      selectedShippingOption = details['shippingOptions'][0];
 	      otherShippingOption = details['shippingOptions'][1];
-	      //details['total']['amount']['value'] = (parseFloat(details['total']['amount']['value']) + 10.00).toFixed(2);
+	      details['total']['amount']['value'] = originalCost + 0.00;
+				details['displayItems'][1]['amount']['value'] = 0.00;
 	    } else {
 	      selectedShippingOption = details['shippingOptions'][1];
 	      otherShippingOption = details['shippingOptions'][0];
@@ -136,7 +138,7 @@ webpay.prototype.setup = function(itemSummary, total){
 	  	if (success) {
 				// Call complete to hide payment sheet
 				paymentResponse.complete('success');
-				window.top.location.href = 'https://maheshkk.github.io/samsung-shop/order-confirm.html';
+				window.top.location.href = '/samsung-shop/order-confirm.html';
 	   	} else {
 		   	// Call complete to hide payment sheet
 				paymentResponse.complete('fail');
@@ -155,9 +157,10 @@ webpay.prototype.processPayment = function(paymentResponse, total) {
   console.log(JSON.stringify(payload));
   return new Promise( (resolve, reject) => {
     if (!payload || !payload.details) {
-       resolve(false);
+      resolve(false);
     }
     // approve all the transactions!
+    console.log("payment success");
     resolve(true);
   });
 }
