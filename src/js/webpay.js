@@ -154,8 +154,6 @@ webpay.prototype.setup = function(itemSummary, total){
 }
 
 webpay.prototype.processPayment = function(paymentResponse, total) {
-	console.log(payload);
-  console.log(JSON.stringify(payload));
   return new Promise( (resolve, reject) => {
   	setTimeout(function() { 
 	    // approve all the transactions!
