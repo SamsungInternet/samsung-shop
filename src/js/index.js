@@ -1,9 +1,10 @@
-/*
+
 window.onload = function(e) {
   if (location.protocol != "https:") {
     // For Web APIs that only work in a secure context
     location.href = "https:" + window.location.href.substring(window.location.protocol.length);
   }
+  /*
 	let microphone = document.getElementById("mic");
   // microphone.onclick = function(){
   if(!("webkitSpeechRecognition" in window )) {
@@ -87,5 +88,5 @@ window.onload = function(e) {
   };
 
   microphone.click();
+  */
 };
-*/
