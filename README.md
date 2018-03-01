@@ -2,7 +2,7 @@
 
 [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)
 
-A simple demo showing capabilities of voice enabled webpages. This demo also uses the [Web Payment API](https://developers.google.com/web/fundamentals/discovery-and-monetization/payment-request/).
+A simple demo showing capabilities of voice enabled webpages. This demo also uses the [Web Payment API](https://developers.google.com/web/fundamentals/discovery-and-monetization/payment-request/). You can read more about getting started with the Web Payment API [here](https://medium.com/samsung-internet-dev/how-to-take-payments-on-the-web-with-the-payment-request-api-a523f6fc7c1f). And this demo will be updated (in the near future) to demonstrate Samsung Pay integration with the Web Payment API.
 
 ### Commands
 

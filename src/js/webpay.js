@@ -33,13 +33,13 @@ webpay.prototype.setup = function(itemSummary, total){
 	    {
 	      id: 'standard',
 	      label: 'Standard shipping',
-	      amount: {currency: 'USD', value: '10.00'},
+	      amount: {currency: 'USD', value: '0.00'},
 	      selected: true
 	    },
 	    {
 	      id: 'express',
 	      label: 'Express shipping',
-	      amount: {currency: 'USD', value: '25.00'}
+	      amount: {currency: 'USD', value: '10.00'}
 	    }
 		]
 	};
@@ -54,7 +54,7 @@ webpay.prototype.setup = function(itemSummary, total){
 		});
 	});
 
-	// shipping 
+	// discount
 	details['displayItems'].push(
 	{
 		label: 'Loyal customer discount',
@@ -62,8 +62,16 @@ webpay.prototype.setup = function(itemSummary, total){
 		pending: true 																 // The price is not determined yet
 	});
 
+	// shipping
+	details['displayItems'].push(
+	{
+		label: 'Shipping',
+		amount: { currency: 'USD', value : 0.00 }, // US$0.00
+		pending: true 																 // The price is not determined yet
+	});
+
 	// total
-	let finalCost = parseFloat(total.replace('$', '')) + discount;
+	let finalCost = parseFloat(total.replace('$', '')) - discount;
 	details['total'] = {
   		label: 'Total',
   		amount: { currency: 'USD', value : finalCost},
@@ -98,17 +106,21 @@ webpay.prototype.setup = function(itemSummary, total){
  	// detect shipping option changes
  	payment.addEventListener('shippingoptionchange', e => {
 	  e.updateWith(((details, shippingOption) => {
+	  	let originalCost = finalCost;
 	    let selectedShippingOption;
 	    let otherShippingOption;
+	    let displayItemsLength = details['displayItems'].length;
 	    if (shippingOption === 'standard') {
 	      selectedShippingOption = details['shippingOptions'][0];
 	      otherShippingOption = details['shippingOptions'][1];
-	      //details['total']['amount']['value'] = (parseFloat(details['total']['amount']['value']) + 10.00).toFixed(2);
+	      details['total']['amount']['value'] = originalCost;
+				details['displayItems'][displayItemsLength - 1]['amount']['value'] = 0.00;
 	    } else {
 	      selectedShippingOption = details['shippingOptions'][1];
 	      otherShippingOption = details['shippingOptions'][0];
-	      //details['total']['amount']['value'] = (parseFloat(details['total']['amount']['value']) + 25.00).toFixed(2);
-	    }
+	      details['total']['amount']['value'] = originalCost + 10.00;
+				details['displayItems'][displayItemsLength - 1]['amount']['value'] = 10.00;
+			}
 	    selectedShippingOption.selected = true;
 	    otherShippingOption.selected = false;
 	      return Promise.resolve(details);
@@ -130,13 +142,13 @@ webpay.prototype.setup = function(itemSummary, total){
 	  sessionStorage.setItem("samsungPayShopDemoEmail", paymentResponse.payerEmail); 
 	  console.log(paymentData);
 	  console.log(JSON.stringify(paymentData));
-	  this.processPayment(paymentResponse, finalCost).then( success => {
+	  this.processPayment(paymentResponse, details['total']['amount']['value']).then( success => {
 	  	console.log(success);
 	  	console.log(JSON.stringify(success));
 	  	if (success) {
 				// Call complete to hide payment sheet
 				paymentResponse.complete('success');
-				window.top.location.href = 'https://maheshkk.github.io/samsung-shop/order-confirm.html';
+				window.top.location.href = '/samsung-shop/order-confirm.html';
 	   	} else {
 		   	// Call complete to hide payment sheet
 				paymentResponse.complete('fail');
@@ -151,13 +163,11 @@ webpay.prototype.setup = function(itemSummary, total){
 }
 
 webpay.prototype.processPayment = function(paymentResponse, total) {
-	console.log(payload);
-  console.log(JSON.stringify(payload));
   return new Promise( (resolve, reject) => {
-    if (!payload || !payload.details) {
-       resolve(false);
-    }
-    // approve all the transactions!
-    resolve(true);
+  	setTimeout(function() { 
+	    // approve all the transactions!
+	    console.log("payment success");
+	    resolve(true);
+	  }, 1000);
   });
 }
