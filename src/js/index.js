@@ -1,9 +1,10 @@
+
 window.onload = function(e) {
   if (location.protocol != "https:") {
     // For Web APIs that only work in a secure context
-    location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+    //location.href = "https:" + window.location.href.substring(window.location.protocol.length);
   }
-	let microphone = document.getElementById("mic");
+  let microphone = document.getElementById("mic");
   // microphone.onclick = function(){
   if(!("webkitSpeechRecognition" in window )) {
     console.warn("Web Speech API isn\"t available in this browser");
@@ -31,24 +32,26 @@ window.onload = function(e) {
   //speech.speechURI = ";
   // when start() is called
 
-	let microphoneListenTime = 0;
-	let hasMic = true;
+  let microphoneListenTime = 0;
+  let hasMic = true;
 
   speech.onstart = function() {
+    let body = document.getElementsByTagName("body")[0];
+    body.removeEventListener("touchstart", startSpeech, false);
     console.log("listening...");
   }
 
   // continuous listening
   speech.onend = function() {
-		if (hasMic) {
-			if (microphoneListenTime < 1000) {
-				setTimeout(function() {
-	              speech.start();
-	      }, 1000 - microphoneListenTime)
-			} else {
-				speech.start();
-			}
-		}
+    if (hasMic) {
+      if (microphoneListenTime < 1000) {
+        setTimeout(function() {
+                speech.start();
+        }, 1000 - microphoneListenTime)
+      } else {
+        speech.start();
+      }
+    }
   }
 
   // output result to text field
@@ -71,19 +74,22 @@ window.onload = function(e) {
     doAction(finalList[0].toLowerCase(), finalList);
     console.log("result");
   }
-	// log errors
-	speech.onerror = function(error){
-		if (error.error === "not-allowed" || error.error === "service-not-allowed") {
-			hasMic = false;
-			console.warn("cannot connect to mic - voice recognition stopped.")
-		} else {
-			console.warn(error);
-		}
-	}
+  // log errors
+  speech.onerror = function(error){
+    if (error.error === "not-allowed" || error.error === "service-not-allowed") {
+      hasMic = false;
+      console.warn("cannot connect to mic - voice recognition stopped.")
+    } else {
+      console.warn(error);
+    }
+  }
 
   microphone.onclick = function() {
-    speech.start();
+    let body = document.getElementsByTagName("body")[0];
+    body.addEventListener("touchstart", startSpeech, false);
   };
-
+  function startSpeech(){
+    speech.start();
+  }
   microphone.click();
 };
